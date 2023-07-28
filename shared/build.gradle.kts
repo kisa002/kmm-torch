@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+
 plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
@@ -15,9 +17,15 @@ kotlin {
             }
         }
     }
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
+    iosX64 {
+        setUpiOSObserver()
+    }
+    iosArm64 {
+        setUpiOSObserver()
+    }
+    iosSimulatorArm64 {
+        setUpiOSObserver()
+    }
 
     cocoapods {
         summary = "Some description for the Shared Module"
@@ -29,7 +37,7 @@ kotlin {
             baseName = "shared"
         }
     }
-    
+
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -50,5 +58,20 @@ android {
     compileSdk = 33
     defaultConfig {
         minSdk = 28
+    }
+}
+
+fun KotlinNativeTarget.setUpiOSObserver() {
+    val path = projectDir.resolve("src/nativeInterop/cinterop/Observer")
+
+    binaries.all {
+        linkerOpts("-F $path")
+        linkerOpts("-ObjC")
+    }
+
+    compilations.getByName("main") {
+        cinterops.create("Observer") {
+            compilerOpts("-F $path")
+        }
     }
 }
