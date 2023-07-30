@@ -2,6 +2,7 @@ package com.haeyum.kmm_torch.utils.torch
 
 import Observer.ObserverProtocol
 import kotlinx.cinterop.COpaquePointer
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -43,6 +44,7 @@ actual class TorchController {
     actual val isEnabledFlow: Flow<Boolean> = callbackFlow {
         if (device == null) {
             println("WARNING: No device found. It's not possible to observe torch mode changes.")
+            cancel()
             return@callbackFlow
         }
 
