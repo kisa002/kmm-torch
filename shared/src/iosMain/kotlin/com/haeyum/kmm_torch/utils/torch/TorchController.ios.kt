@@ -44,7 +44,7 @@ actual class TorchController {
     actual val isEnabledFlow: Flow<Boolean> = callbackFlow {
         if (device == null) {
             println("WARNING: No device found. It's not possible to observe torch mode changes.")
-            cancel()
+            close()
             return@callbackFlow
         }
 
