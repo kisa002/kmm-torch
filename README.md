@@ -1,5 +1,7 @@
 # kmm-torch
-본 프로젝트는 Kotlin/Compose Multiplatform 두 가지 방식으로 만들어진 AOS/iOS 토치앱 프로젝트입니다.
+본 프로젝트는 Kotlin/Compose Multiplatform 두 가지 방식으로 만들어진 AOS/iOS 토치앱 프로젝트입니다.<br>
+관련 설명 자료를 원하신다면 아래의 블로그 포스팅을 통해 자세한 설명을 확인하실 수 있습니다.<br>
+[코틀린 멀티플랫폼 Android & iOS 토치앱 만들기 - HolyKisa](https://holykisa.tistory.com/111)
 
 # Multiplatform
 ## Compose Multiplatform
